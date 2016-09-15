@@ -1,0 +1,9 @@
+/ new.html.haml
+%h1 New Todo List
+
+= simple_form_for @todo_list do |f|
+  = f.input :title
+  = f.input :category
+  = f.button :submit
+
+= link_to "Back", root_path

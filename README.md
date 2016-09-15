@@ -11,8 +11,8 @@ they are complete, and be logged in to view/edit lists.
 ```ruby
 #Gems I've added
 gem 'haml', '~> 4.0', '>= 4.0.7'
-gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'  # needs to be configured
-gem 'simple_form', '~> 3.3', '>= 3.3.1' 	# needs to be configured
+gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'  # needs to be configured - DONE
+gem 'simple_form', '~> 3.3', '>= 3.3.1' 	# needs to be configured - DONE
 gem 'devise', '~> 4.2' 							# needs to be configured
 ```
 * HAML is the only one that I don't need to configure
@@ -126,5 +126,87 @@ private
   * I got stuck on the private method todo_list_params and had to go back to look it up.  Here are the main parts:
     * params.require(:model_name) + 
     * permit.(:column1, :column2, etc.)
+  * the entire point of the find_todo_list method is to have it completed BEFORE I show, edit, update or destroy a 
+  todo_list...I must implement that now
+* I added the update action in the controller and converted the simple_form_for to the partial.  Now I just need to 
+add the "destroy" action
+  * The destroy action is actually not very complicated at all.  In the controller, it takes just one line to destroy
+  the entry and then another to redirect:
+```ruby
+def destroy
+	@todo_list.destroy
+	redirect_to root_path
+end
+```
+  * Where it is a bit tricky is in the link itself that allows you to click 'delete'.  So if you do 'rails routes' in 
+  the terminal window, you can see that the DELETE verb is allowed on the todo_list path.  That means that it uses the
+  same path as show or update...this is important because what we are doing in the link is that although we are using the
+  same path as the 'show' action, instead of a GET request, we are specifying the HTTP verb that we want to use.  
+  In this case, it is delete.  See below:
+```haml
+= link_to "Delete", todo_list_path(@todo_list), method: :delete, data: { confirm: 'Are you sure?' }
+```
+* By this point, I have an app that can create, edit, and delete lists.  I am going to add some basic styling:
+  * convert application.html.erb to HAML - DONE
+  * add a basic navbar - DONE
+  * configure Bootstrap - DONE
 
+* Getting the Bootstrap into HAML was a bitch and maybe not necessary but here it is...
+```haml
+%nav.navbar.navbar-default{role: "navigation"}
+
+	.navbar-header 
+		%button.navbar-toggle{"data-target" => ".navbar-ex1-collapse", "data-toggle" => "collapse", type: "button"}
+			%span.sr-only Toggle navigation
+			%span.icon-bar
+			%span.icon-bar
+			%span.icon-bar
+		%a.navbar-brand{href: "#"} Brand
+
+	.collapse.navbar-collapse.navbar-ex1-collapse
+
+		%ul.nav.navbar-nav
+			%li.active
+				%a{href: "#"} Link
+			%li
+				%a{href: "#"} Link
+			%li.dropdown
+				%a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+					Dropdown
+					%b.caret
+				%ul.dropdown-menu
+					%li
+						%a{href: "#"} Action
+					%li
+						%a{href: "#"} Another action
+					%li
+						%a{href: "#"} Something else here
+					%li
+						%a{href: "#"} Separated link
+					%li
+						%a{href: "#"} One more separated link
+		%form.navbar-form.navbar-left{role: "search"}
+			.form-group
+				%input.form-control{placeholder: "Search", type: "text"}/
+			%button.btn.btn-default{type: "submit"} Submit
+		%ul.nav.navbar-nav.navbar-right
+			%li
+				%a{href: "#"} Link
+			%li.dropdown
+				%a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+					Dropdown
+					%b.caret
+				%ul.dropdown-menu
+					%li
+						%a{href: "#"} Action
+					%li
+						%a{href: "#"} Another action
+					%li
+						%a{href: "#"} Something else here
+					%li
+						%a{href: "#"} Separated link
+```
+
+* Add Todo Items
+* Add users
 

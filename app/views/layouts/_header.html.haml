@@ -1,0 +1,36 @@
+/ _header.html.haml
+%nav.navbar.navbar-default{role: "navigation"}
+
+	.navbar-header 
+		%button.navbar-toggle{"data-target" => ".navbar-ex1-collapse", "data-toggle" => "collapse", type: "button"}
+			%span.sr-only Toggle navigation
+			%span.icon-bar
+			%span.icon-bar
+			%span.icon-bar
+		%a.navbar-brand#brand
+			= link_to "TODO", root_path
+
+	.collapse.navbar-collapse.navbar-ex1-collapse
+
+		%ul.nav.navbar-nav
+			%li
+				%a= link_to "Home", root_path
+			%li
+				%a= link_to "New Todo List", new_todo_list_path
+			
+		/ %ul.nav.navbar-nav.navbar-right
+		/ 	%li
+		/ 		%a{href: "#"} Link
+		/ 	%li.dropdown
+		/ 		%a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+		/ 			Dropdown
+		/ 			%b.caret
+		/ 		%ul.dropdown-menu
+		/ 			%li
+		/ 				%a{href: "#"} Action
+		/ 			%li
+		/ 				%a{href: "#"} Another action
+		/ 			%li
+		/ 				%a{href: "#"} Something else here
+		/ 			%li
+		/ 				%a{href: "#"} Separated link

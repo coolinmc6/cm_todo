@@ -3,3 +3,5 @@
 %p= @todo_list.category
 
 = link_to "Back", root_path
+= link_to "Edit", edit_todo_list_path
+= link_to "Delete", todo_list_path(@todo_list), method: :delete, data: { confirm: 'Are you sure?' }

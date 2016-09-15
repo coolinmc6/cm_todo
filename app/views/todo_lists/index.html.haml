@@ -1,4 +1,8 @@
 / index.html.haml
 %h1 Welcome to Your Todo Lists!
 
+- @todo_lists.each do |list|
+	%h2= link_to (list.title), list
+
+
 = link_to "New", new_todo_list_path

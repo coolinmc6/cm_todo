@@ -9,6 +9,7 @@
 		%p= item.description
 / 	%p= item
 / 	%p= @todo_list.todo_items
+
 %h3 Add a New Todo Item
 = simple_form_for([@todo_list, @todo_list.todo_items.build]) do |f|
 	= f.input :description

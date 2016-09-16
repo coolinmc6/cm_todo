@@ -218,4 +218,23 @@ views.
 * So I have done a lot and need to type up what I've learned but I want to finish the Devise setup...this is where I am:
 [Filters and Helpers](https://github.com/plataformatec/devise#controller-filters-and-helpers)
 
+### Building Static Pages
+* [Stack Overflow](http://stackoverflow.com/questions/4479233/static-pages-in-ruby-on-rails)
+  * Right away, I want to remove the ../pages/ part of the address and have it just be root/about, root/contant, etc
+* To change the route so that if the user is not logged in they are redirected to the landing page, see below:
+```ruby
+authenticated :user do
+	root 'todo_lists#index', as: "authenticated_root"
+end
 
+root 'pages#home'
+```
+  * these aren't all of my routes but it did allow me to show a different root
+
+### Left to do
+1. Made items "complete-able"
+2. Better home page
+3. Show "completed" items with a cross through them
+4. Add a name field for users
+5. add a way for users to put a link to their twitter
+6.

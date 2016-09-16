@@ -7,8 +7,8 @@
 			%span.icon-bar
 			%span.icon-bar
 			%span.icon-bar
-		%a.navbar-brand#brand
-			= link_to "TODO", root_path
+		
+		= link_to image_tag('icon128-2x.png'), root_path, id: "brand", css: "height: 50px;"
 
 	.collapse.navbar-collapse.navbar-ex1-collapse
 
@@ -20,7 +20,9 @@
 			
 		%ul.nav.navbar-nav.navbar-right
 			%li
-				%a{href: "#"} About
+				= link_to "About", pages_about_path
+			%li
+				= link_to "Contact", pages_contact_path
 			- if user_signed_in?
 				%li
 					= link_to "Logout", destroy_user_session_path, method: :delete, data: { confirm: "Are you sure you want to log out?"}

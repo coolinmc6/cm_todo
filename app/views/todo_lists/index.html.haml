@@ -1,13 +1,15 @@
 / index.html.haml
 %h1 Welcome to Your Todo Lists!
-
+- count = 1
 - @todo_lists.each do |list|
-	.col-xs-12.col-sm-4.col-md-3#index-list-box
-		%h2#index-list-title= link_to (list.title), list
+	.col-xs-12.col-sm-4.col-md-3.index-list-box
+		%h2.index-list-title= link_to (list.title), list
 		%ol
 			- list.todo_items.each do |item|
 				%li.index-item
 					=item.description
+
+
 			
 
 

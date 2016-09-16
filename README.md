@@ -210,3 +210,12 @@ end
 * Add Todo Items
 * Add users
 
+* I need a new model for Todo Items but because Todo Items will only be viewed on a Todo List page, I don't think they need
+views.
+  * Model: rails g model Todo_Items description:text completed:boolean todo_list:references
+* After generating the second model and linking them in their respective models, what next?
+* I need to add routes for the todo items BUT they are nested because you are accessing them in the todo lists
+* So I have done a lot and need to type up what I've learned but I want to finish the Devise setup...this is where I am:
+[Filters and Helpers](https://github.com/plataformatec/devise#controller-filters-and-helpers)
+
+

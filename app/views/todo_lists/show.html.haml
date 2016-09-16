@@ -1,7 +1,21 @@
 / show.html.haml
-%h2= @todo_list.title
-%p= @todo_list.category
-
-= link_to "Back", root_path
-= link_to "Edit", edit_todo_list_path
-= link_to "Delete", todo_list_path(@todo_list), method: :delete, data: { confirm: 'Are you sure?' }
+%h2#list-title= @todo_list.title
+%p
+	%strong Category:
+	=@todo_list.category
+- if @todo_list.todo_items.count > 0
+	%h3 Your Todo Items:
+	- @todo_list.todo_items.each do |item|
+		%p= item.description
+/ 	%p= item
+/ 	%p= @todo_list.todo_items
+%h3 Add a New Todo Item
+= simple_form_for([@todo_list, @todo_list.todo_items.build]) do |f|
+	= f.input :description
+	= f.input :completed
+	= f.submit 
+%br
+/ .btn.btn-primary
+= link_to "Back", root_path, class: "btn btn-primary"
+= link_to "Edit", edit_todo_list_path, class: "btn btn-info"
+= link_to "Delete", todo_list_path(@todo_list), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger"

@@ -14,23 +14,35 @@
 
 		%ul.nav.navbar-nav
 			%li
-				%a= link_to "Home", root_path
+				= link_to "Home", root_path
 			%li
-				%a= link_to "New Todo List", new_todo_list_path
+				= link_to "New Todo List", new_todo_list_path
 			
-		/ %ul.nav.navbar-nav.navbar-right
-		/ 	%li
-		/ 		%a{href: "#"} Link
-		/ 	%li.dropdown
-		/ 		%a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
-		/ 			Dropdown
-		/ 			%b.caret
-		/ 		%ul.dropdown-menu
-		/ 			%li
-		/ 				%a{href: "#"} Action
-		/ 			%li
-		/ 				%a{href: "#"} Another action
-		/ 			%li
-		/ 				%a{href: "#"} Something else here
-		/ 			%li
-		/ 				%a{href: "#"} Separated link
+		%ul.nav.navbar-nav.navbar-right
+			%li
+				%a{href: "#"} About
+			- if user_signed_in?
+				%li
+					= link_to "Logout", destroy_user_session_path, method: :delete, data: { confirm: "Are you sure you want to log out?"}
+				%li
+					= link_to "Account", edit_user_registration_path
+			- else
+				%li
+					= link_to "Login", new_user_session_path
+				%li
+					= link_to "Sign-up", new_user_registration_path
+			/ %li.dropdown
+			/ 	%a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+			/ 		Settings
+			/ 		%b.caret
+			/ 	%ul.dropdown-menu
+			/ 		- if user_signed_in?
+			/ 			%li
+			/ 				= link_to "Logout", destroy_user_session_path, method: :delete, data: { confirm: "Are you sure you want to log out?"}
+			/ 			%li
+			/ 				= link_to "Account", edit_user_registration_path
+			/ 		- else
+			/ 			%li
+			/ 				= link_to "Login", new_user_session_path
+			/ 			%li
+			/ 				= link_to "Sign-up", new_user_registration_path
